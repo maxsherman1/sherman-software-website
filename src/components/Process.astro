@@ -1,0 +1,24 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { steps } from '../data/site';
+---
+
+<section class="border-b border-rule">
+  <div class="frame py-10 md:py-16">
+    <SectionHeader
+      eyebrow="Section 04"
+      title="4-stappen aanpak"
+      aside="Een gestroomlijnd proces van idee tot livegang."
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-rule border border-rule">
+      {steps.map((s) => (
+        <div class="bg-canvas p-6 flex flex-col">
+          <h3 class="t-h3 text-ink mb-2">{s.title}</h3>
+          <p class="t-body text-steel mb-6">{s.text}</p>
+          <span class="t-label text-steel mt-auto">Step {s.id} //</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

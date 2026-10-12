@@ -1,0 +1,18 @@
+---
+import { faq } from '../data/site';
+---
+
+<section class="border-b border-rule">
+  <div class="frame grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 gap-y-10 py-10 md:py-16">
+    <h2 class="t-h1 text-ink col-span-4 md:col-span-8 lg:col-span-4">Veelgestelde vragen</h2>
+
+    <div class="col-span-4 md:col-span-8 lg:col-span-8 border border-rule bg-white divide-y divide-rule">
+      {faq.map((item) => (
+        <div class="p-6">
+          <h3 class="t-h3 text-ink mb-2">{item.q}</h3>
+          <p class="t-body text-steel">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

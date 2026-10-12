@@ -1,0 +1,171 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { caseSpecs } from '../data/site';
+
+const tabs = [
+  { id: 'overview', label: 'Portfolio overzicht' },
+  { id: 'risk', label: 'Risico index' },
+  { id: 'cashflow', label: 'Prognose' },
+];
+
+const stats = [
+  { label: 'Totale portfoliowaarde', value: '€ 2.840.500', note: '+8.4% YTD', wide: false },
+  { label: 'Gezondheidsscore', value: '94 / 100', note: 'Laag risico', wide: false },
+  { label: 'Actieve investeringen', value: '18 bedrijven', note: 'Gediversifieerd', wide: true },
+];
+
+const risk = [
+  { label: 'Vastgoed & Infrastructuur', pct: 35 },
+  { label: 'Tech Startups & SaaS', pct: 45 },
+  { label: 'Obligaties & Liquiditeit', pct: 20 },
+];
+
+const cashflow = [
+  { label: 'Verwacht dividend Q3', value: '€ 42.000' },
+  { label: 'Herinvesteringsruimte', value: '€ 120.000' },
+];
+
+const tabBase = 't-label border border-canvas/25 px-3 py-2 hover:bg-canvas hover:text-ink';
+---
+
+<section id="werk" class="border-b border-rule">
+  <div class="frame py-10 md:py-16">
+    <SectionHeader
+      eyebrow="Section 01"
+      title="Uitgelicht portfolio project"
+      aside="Case study: custom webapplicatie dashboard voor de financiële sector."
+    />
+
+    <div class="reg border border-rule bg-white grid grid-cols-1 lg:grid-cols-12">
+      <!-- Info -->
+      <div class="lg:col-span-5 p-6 md:p-10 flex flex-col gap-6 border-b lg:border-b-0 lg:border-r border-rule">
+        <div><span class="chip text-steel">Webapplicatie op maat</span></div>
+
+        <h3 class="t-h2 text-ink">Investment Health Checks</h3>
+
+        <p class="t-body text-steel">
+          Een overzichtelijk, krachtig analyseplatform ontworpen voor het beoordelen van investeringsportfolio's. Ontwikkeld voor maximale verwerkingssnelheid, heldere datavisualisaties en mobiele toegankelijkheid.
+        </p>
+
+        <dl class="mt-auto border-t border-rule">
+          {caseSpecs.map((spec) => (
+            <div class="flex items-baseline justify-between gap-4 py-2 border-b border-rule t-code">
+              <dt class="text-steel">{spec.label}</dt>
+              <dd class="text-ink text-right">{spec.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <!-- Recessed app console -->
+      <div class="lg:col-span-7 p-4 md:p-6 flex">
+        <div data-tabs class="w-full bg-ink border border-rule text-canvas p-4 md:p-6 space-y-4">
+          <!-- Console bar -->
+          <div class="flex items-center justify-between gap-3 border-b border-canvas/25 pb-4">
+            <div class="flex items-center gap-1">
+              <span class="block w-2 h-2 border border-canvas/40"></span>
+              <span class="block w-2 h-2 border border-canvas/40"></span>
+              <span class="block w-2 h-2 border border-canvas/40"></span>
+            </div>
+            <span class="t-code text-canvas/60 min-w-0 flex-1 truncate">app.investmenthealthchecks.nl</span>
+            <span class="chip chip-signal text-canvas border-canvas/25 shrink-0">Live demo</span>
+          </div>
+
+          <!-- Tabs -->
+          <div role="tablist" class="flex flex-wrap gap-2">
+            {tabs.map((tab, i) => (
+              <button
+                type="button"
+                role="tab"
+                data-tab={tab.id}
+                aria-selected={i === 0}
+                class:list={[tabBase, i === 0 ? 'bg-canvas text-ink' : 'text-canvas']}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <!-- Overview -->
+          <div data-panel="overview" role="tabpanel" class="space-y-4">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-px bg-canvas/25 border border-canvas/25">
+              {stats.map((s) => (
+                <div class:list={['bg-ink p-3', s.wide && 'col-span-2 sm:col-span-1']}>
+                  <div class="t-label text-canvas/60">{s.label}</div>
+                  <div class="font-serif font-medium text-2xl leading-8 mt-2 tabular-nums">{s.value}</div>
+                  <div class="t-code text-canvas/60 mt-1 tabular-nums">{s.note}</div>
+                </div>
+              ))}
+            </div>
+
+            <div class="border border-canvas/25 p-4 space-y-2">
+              <div class="flex justify-between t-label text-canvas/60">
+                <span>Kwartaalrendement</span>
+                <span>Q1 – Q4 2026</span>
+              </div>
+              <div class="h-20 flex items-end gap-4 pt-2">
+                <div class="flex-1 bg-canvas/30 h-1/2 hover:bg-vermilion"></div>
+                <div class="flex-1 bg-canvas/45 h-3/4 hover:bg-vermilion"></div>
+                <div class="flex-1 bg-canvas/60 h-2/3 hover:bg-vermilion"></div>
+                <div class="flex-1 bg-vermilion h-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk -->
+          <div data-panel="risk" role="tabpanel" class="space-y-4 hidden">
+            <div class="t-label text-canvas/60">// Risico diversificatie matrix</div>
+            <div class="space-y-4">
+              {risk.map((r) => (
+                <div>
+                  <div class="flex justify-between t-code text-canvas mb-2 tabular-nums">
+                    <span>{r.label}</span>
+                    <span>{r.pct}%</span>
+                  </div>
+                  <div class="w-full h-2 bg-canvas/15">
+                    <div class="h-2 bg-canvas" style={`width: ${r.pct}%`}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Cashflow -->
+          <div data-panel="cashflow" role="tabpanel" class="space-y-4 hidden">
+            <div class="t-label text-canvas/60">// Geprojecteerde cashflow 2026–2028</div>
+            <div class="border-t border-canvas/25">
+              {cashflow.map((c) => (
+                <div class="flex justify-between gap-4 py-3 border-b border-canvas/25 t-code tabular-nums">
+                  <span class="text-canvas/60">{c.label}</span>
+                  <span class="text-canvas">{c.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const ACTIVE = ['bg-canvas', 'text-ink'];
+  const INACTIVE = ['text-canvas'];
+
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-tab]');
+    const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+
+    const select = (name: string) => {
+      panels.forEach((p) => p.classList.toggle('hidden', p.dataset.panel !== name));
+      buttons.forEach((b) => {
+        const on = b.dataset.tab === name;
+        b.setAttribute('aria-selected', String(on));
+        b.classList.remove(...(on ? INACTIVE : ACTIVE));
+        b.classList.add(...(on ? ACTIVE : INACTIVE));
+      });
+    };
+
+    buttons.forEach((b) => b.addEventListener('click', () => select(b.dataset.tab!)));
+  });
+</script>

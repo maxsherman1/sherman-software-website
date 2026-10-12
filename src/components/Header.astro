@@ -1,0 +1,25 @@
+---
+import { nav } from '../data/site';
+---
+
+<header class="sticky top-0 z-50 bg-canvas border-b border-ink">
+  <div class="frame flex items-center justify-between gap-x-4 gap-y-2 py-4">
+    <div class="flex items-center gap-4">
+      <a href="#" class="flex flex-col hover:text-vermilion">
+        <span class="font-serif font-medium text-xl md:text-2xl leading-none tracking-tight">Sherman Software</span>
+        <span class="t-label text-steel mt-1">Web Studio • Nederland</span>
+      </a>
+      <span class="chip hidden md:inline-flex text-steel">Est. '24</span>
+    </div>
+
+    <nav class="hidden lg:flex items-center gap-8 t-label text-steel">
+      {nav.map((item) => (
+        <a href={item.href} class="py-1 border-b border-transparent hover:text-ink hover:border-ink">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a href="#contact" class="btn btn-primary btn-compact">Bespreek project</a>
+  </div>
+</header>

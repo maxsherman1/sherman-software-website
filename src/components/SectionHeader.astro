@@ -1,0 +1,17 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  aside?: string;
+  class?: string;
+}
+const { eyebrow, title, aside, class: className = 'mb-10' } = Astro.props;
+---
+
+<div class:list={['flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-ink', className]}>
+  <div>
+    <span class="t-label text-steel block mb-2">{eyebrow}</span>
+    <h2 class="t-h1 text-ink">{title}</h2>
+  </div>
+  {aside && <p class="t-body-sm text-steel max-w-sm">{aside}</p>}
+</div>

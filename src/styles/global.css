@@ -1,1 +1,172 @@
 @import "tailwindcss";
+
+/*
+ * Sherman Software design system — tokens.
+ * Values follow the prose spec (ink #0D0F11, vermilion #D94826, steel #2C3238,
+ * rule #E2DED4, canvas #F5F3EC). The frontmatter hex values in the source doc differ;
+ * change them here, in one place, if those are the intended ones.
+ */
+@theme {
+  /* Drop Tailwind's default palette, radii and shadows: the system is flat and sharp */
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  --color-ink: #0D0F11;
+  --color-vermilion: #D94826;
+  --color-steel: #2C3238;
+  --color-rule: #E2DED4;
+  --color-canvas: #F5F3EC;
+  --color-white: #FFFFFF;
+
+  --font-serif: "Newsreader", serif;
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Desktop starts at 1200px (12-col); tablet 768–1199 (8-col); mobile <768 (4-col) */
+  --breakpoint-lg: 75rem;
+}
+
+:root {
+  --margin: 1.25rem;
+}
+@media (min-width: 48rem) {
+  :root { --margin: 2rem; }
+}
+@media (min-width: 75rem) {
+  :root { --margin: 3rem; }
+}
+
+@layer base {
+  html { scroll-padding-top: 6rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+  }
+
+  /* Strictly sharp corners */
+  *, ::before, ::after { border-radius: 0; }
+
+  ::selection { background: var(--color-ink); color: var(--color-canvas); }
+
+  :focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--color-canvas); }
+  ::-webkit-scrollbar-thumb { background: var(--color-rule); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-ink); }
+}
+
+@layer components {
+  /* Page frame: 4/8/12-col margins */
+  .frame {
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: var(--margin);
+  }
+
+  /* ---------- Typography scale ---------- */
+  .t-display, .t-h1, .t-h2, .t-h3 { font-family: var(--font-serif); }
+
+  .t-display { font-size: 2.75rem; line-height: 3rem; font-weight: 400; letter-spacing: -0.02em; }
+  .t-h1 { font-size: 2rem; line-height: 2.25rem; font-weight: 400; letter-spacing: -0.01em; }
+  .t-h2 { font-size: 2rem; line-height: 2.35rem; font-weight: 500; letter-spacing: -0.015em; }
+  .t-h3 { font-size: 1.5rem; line-height: 1.85rem; font-weight: 500; letter-spacing: -0.01em; }
+  @media (min-width: 48rem) {
+    .t-display { font-size: 4.5rem; line-height: 4.75rem; letter-spacing: -0.03em; }
+    .t-h1 { font-size: 3rem; line-height: 3.25rem; letter-spacing: -0.02em; }
+  }
+
+  .t-body-lg { font-family: var(--font-sans); font-size: 1.125rem; line-height: 1.75rem; letter-spacing: -0.01em; }
+  .t-body { font-family: var(--font-sans); font-size: 0.9375rem; line-height: 1.5rem; }
+  .t-body-sm { font-family: var(--font-sans); font-size: 0.8125rem; line-height: 1.25rem; letter-spacing: 0.005em; }
+
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .t-code { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.25rem; }
+
+  /* ---------- Buttons (no transitions: states flip instantly) ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .btn-compact { padding: 0.5rem 1rem; }
+  .btn-primary { background: var(--color-ink); color: var(--color-canvas); }
+  .btn-primary:hover { background: var(--color-vermilion); border-color: var(--color-vermilion); color: var(--color-white); }
+  .btn-outline { background: transparent; color: var(--color-ink); }
+  .btn-outline:hover { box-shadow: 2px 2px 0 0 var(--color-ink); }
+  .btn-inverse { background: var(--color-canvas); border-color: var(--color-canvas); color: var(--color-ink); }
+  .btn-inverse:hover { background: var(--color-vermilion); border-color: var(--color-vermilion); color: var(--color-white); }
+
+  /* ---------- Chips & datum badges ---------- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--color-rule);
+    padding: 0.25rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .chip-signal::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--color-vermilion);
+  }
+
+  /* ---------- Form fields ---------- */
+  .field {
+    width: 100%;
+    background: var(--color-canvas);
+    border: 1px solid var(--color-rule);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5rem;
+    color: var(--color-ink);
+  }
+  .field::placeholder { color: var(--color-steel); opacity: 0.6; }
+  .field:focus, .field:focus-visible { border-color: var(--color-ink); outline: none; }
+
+  /* ---------- Registration marks (+) at card corners ---------- */
+  .reg { position: relative; }
+  .reg::before, .reg::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background:
+      linear-gradient(var(--color-rule), var(--color-rule)) center / 1px 100% no-repeat,
+      linear-gradient(var(--color-rule), var(--color-rule)) center / 100% 1px no-repeat;
+    pointer-events: none;
+  }
+  .reg::before { top: -5px; left: -5px; }
+  .reg::after { bottom: -5px; right: -5px; }
+}
