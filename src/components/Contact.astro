@@ -8,18 +8,18 @@ const rows = [
 ];
 ---
 
-<section id="contact">
+<section id="contact" class="bg-ink">
   <div class="frame grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 gap-y-10 py-10 md:py-16">
     <!-- Direct contact info -->
     <div class="col-span-4 md:col-span-8 lg:col-span-5 space-y-6">
-      <span class="t-label text-steel block">Section 06 — Contact</span>
-      <h2 class="t-h1 text-ink">Klaar om jouw project te starten?</h2>
-      <p class="t-body text-steel">
+      <span class="t-label text-canvas/60 block">Section 06 — Contact</span>
+      <h2 class="t-h1 text-vermilion">Klaar om jouw project te starten?</h2>
+      <p class="t-body text-canvas/60">
         Vul het formulier in of stuur direct een e-mail. Je ontvangt binnen 24 uur een inhoudelijke reactie en prijsindicatie.
       </p>
 
       <!-- Recessed telemetry readout -->
-      <dl class="bg-ink border border-rule text-canvas p-4">
+      <dl class="bg-ink border border-vermilion text-canvas p-4">
         {rows.map((r) => (
           <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4 py-3 border-b border-canvas/25 last:border-b-0">
             <dt class="t-label text-canvas/60">{r.label}</dt>
@@ -33,7 +33,7 @@ const rows = [
 
     <!-- Form -->
     <div class="col-span-4 md:col-span-8 lg:col-span-7">
-      <form id="contact-form" class="reg border border-rule bg-white p-6 md:p-10 space-y-6">
+      <form id="contact-form" class="border border-rule bg-white p-6 md:p-10 space-y-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label for="naam" class="t-label text-steel block mb-2">Naam *</label>
