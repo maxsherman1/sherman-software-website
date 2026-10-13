@@ -32,11 +32,11 @@ import { caseSpecs } from '../data/site';
         </dl>
       </div>
 
-      <!-- Live iframe preview (desktop scaled) -->
+      <!-- Live iframe preview (responsive scaled) -->
       <div class="lg:col-span-7 p-4 md:p-6 flex">
-        <div id="preview-wrapper" class="w-full border border-rule overflow-hidden bg-[#ececec] rounded-lg shadow-lg">
+        <div id="preview-wrapper" class="w-full border border-rule overflow-hidden bg-[#ececec] rounded-lg shadow-lg relative">
           <!-- Mac-style browser chrome -->
-          <div class="flex items-center gap-3 px-3 py-2 bg-[#f5f5f5] border-b border-[#d1d1d1] select-none">
+          <div id="preview-chrome" class="flex items-center gap-3 px-3 py-2 bg-[#f5f5f5] border-b border-[#d1d1d1] select-none relative z-10">
             <div class="flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-[#ff5f57] ring-1 ring-[#e0443e]/30"></span>
               <span class="w-3 h-3 rounded-full bg-[#febc2e] ring-1 ring-[#d4a017]/30"></span>
@@ -49,11 +49,10 @@ import { caseSpecs } from '../data/site';
             </div>
             <span class="text-[10px] uppercase tracking-wide text-[#888] font-medium shrink-0">Live preview</span>
           </div>
-          <div id="preview-scaler" style="width: 1440px; transform-origin: top left; background:#0d0f11;">
+          <div id="preview-scaler" class="absolute left-0" style="transform-origin:top left;">
             <iframe
+              id="preview-iframe"
               src="https://investmenthealthchecks.com"
-              width="1440"
-              height="900"
               style="border:0; display:block;"
               loading="lazy"
               title="Investment Health Checks live website"
@@ -65,13 +64,23 @@ import { caseSpecs } from '../data/site';
           (function () {
             const wrapper = document.getElementById('preview-wrapper');
             const scaler = document.getElementById('preview-scaler');
-            const DESKTOP_W = 1440;
-            const DESKTOP_H = 900;
+            const iframe = document.getElementById('preview-iframe');
+            const chrome = document.getElementById('preview-chrome');
+            const TARGET = 400; // fixed displayed content height in px
             function resize() {
-              if (!wrapper || !scaler) return;
-              const scale = wrapper.clientWidth / DESKTOP_W;
+              if (!wrapper || !scaler || !iframe || !chrome) return;
+              var vw = window.innerWidth;
+              if (vw > 1440) vw = 1440; // cap width on large screens to increase scale
+              var scale = wrapper.clientWidth / vw;
+              var vh = Math.round(TARGET / scale);
+              iframe.width = vw;
+              iframe.height = vh;
+              scaler.style.width = vw + 'px';
+              scaler.style.height = vh + 'px';
               scaler.style.transform = 'scale(' + scale + ')';
-              wrapper.style.height = Math.round(DESKTOP_H * scale) + 'px';
+              var chromeH = chrome.offsetHeight || 40;
+              scaler.style.top = chromeH + 'px';
+              wrapper.style.height = (chromeH + TARGET) + 'px';
             }
             resize();
             window.addEventListener('resize', resize);
