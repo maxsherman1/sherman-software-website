@@ -24,7 +24,7 @@ export const services = [
     title: 'Bedrijfswebsites & redesigns',
     description:
       'Representatieve, snelle websites die direct de kwaliteit van je bedrijf weerspiegelen. Geoptimaliseerd voor Google en perfect leesbaar op mobiel.',
-    bullets: ['Bespoke visueel ontwerp', 'SEO-vriendelijke structuur', 'Eenvoudig zelf te beheren'],
+    bullets: ['Een ontwerp dat past bij jouw bedrijf', 'SEO-vriendelijke structuur', 'Eenvoudig zelf te beheren'],
     tinted: false,
   },
   {
@@ -32,7 +32,7 @@ export const services = [
     title: 'Webapplicaties & portalen',
     description:
       'Klantportalen, interne dashboards of maatwerk software die jouw specifieke bedrijfsproces automatiseert en vereenvoudigt.',
-    bullets: ['Klantportalen & Dashboards', 'Veilige API-koppelingen', 'Schaalbare database opbouw'],
+    bullets: ['Klantportalen & Dashboards', 'Koppelingen met andere systemen, met aandacht voor beveiliging', 'Een gegevensstructuur die past bij jouw toepassing'],
     tinted: true,
   },
   {
@@ -101,7 +101,7 @@ export const pricing = [
   },
   {
     label: 'Webapplicatie / Portal',
-    price: 'Vanaf € 1.495',
+    price: 'Prijs op basis van functionaliteit en scope.',
     unit: undefined,
     text: 'Maatwerk dashboards, klantportalen en gekoppelde applicaties voor efficiënte bedrijfsvoering.',
     highlighted: true,
@@ -117,16 +117,28 @@ export const pricing = [
 
 export const faq = [
   {
-    q: 'Hoe lang duurt het bouwen van een website?',
-    a: 'Een gemiddelde bedrijfswebsite wordt opgeleverd binnen 3 tot 5 weken na akkoord op het ontwerp. Maatwerk applicaties duren afhankelijk van de scope 6 tot 12 weken.',
+    q: 'Wat kost een website of webapplicatie?',
+    a: 'De prijs hangt af van de omvang en functionaliteit. Voor websites werk ik met duidelijke startprijzen en een vooraf afgesproken scope. Voor uitgebreidere applicaties maak ik eerst een voorstel op basis van je wensen.',
   },
   {
-    q: 'Ben ik zelf eigenaar van het eindproduct?',
-    a: 'Ja. Na volledige betaling ontvang je de volledige rechten op alle geschreven code, ontwerpen en inhoud. Je zit nooit vast aan een gesloten systeem.',
+    q: 'Moet ik zelf teksten en afbeeldingen aanleveren?',
+    a: 'We spreken vooraf af welke inhoud jij aanlevert en waarbij ik kan helpen. Als je nog geen duidelijke teksten hebt, kunnen we samen bepalen wat nodig is.',
   },
   {
-    q: 'Kan ik de inhoud later zelf aanpassen?',
-    a: "Absoluut. Alle websites worden opgeleverd met een intuïtief, gebruiksvriendelijk beheersysteem zodat je eenvoudig zelf teksten en foto's kunt beheren.",
+    q: 'Kan ik mijn website later zelf aanpassen?',
+    a: 'Dat hangt af van de gekozen oplossing. Als je zelf teksten, afbeeldingen of andere inhoud wilt beheren, nemen we de passende beheermogelijkheden mee in het voorstel.',
+  },
+  {
+    q: 'Wie regelt hosting en mijn domeinnaam?',
+    a: 'We bespreken vooraf waar je website wordt gehost, wie de domeinnaam beheert en welke terugkerende kosten er zijn. Zo weet je wat je na oplevering kunt verwachten.',
+  },
+  {
+    q: 'Wat als ik later iets wil aanpassen?',
+    a: 'Kleine wijzigingen en verdere ontwikkeling kunnen we op basis van duidelijke afspraken oppakken. Voor doorlopende ondersteuning zijn onderhoudsafspraken mogelijk.',
+  },
+  {
+    q: 'Zit ik vast aan Sherman Software?',
+    a: 'Nee, het uitgangspunt is dat je de afgesproken projectbestanden en toegangsgegevens ontvangt. Voor externe diensten en licenties gelden de voorwaarden van de betreffende aanbieders.',
   },
 ];
 
