@@ -7,8 +7,9 @@ interface Props {
 }
 
 const {
-  title = 'Sherman Software — Onafhankelijke Web Development Studio',
-  description = 'Ik help ondernemers met professionele websites en webapplicaties die exact aansluiten bij hun bedrijf.',
+  title = 'Sherman Software — Websites & webapplicaties op maat',
+  description =
+    'Onafhankelijke web development studio. Ik help ondernemers aan professionele websites en webapplicaties, met direct contact en duidelijke afspraken.',
 } = Astro.props;
 ---
 
@@ -18,18 +19,23 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#F5F3EC" />
+    <meta name="theme-color" content="#fbf9f2" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Space+Grotesk:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="min-h-screen flex flex-col antialiased">
+    <a
+      href="#top"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-brand focus:bg-espresso focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-paper"
+      >Naar inhoud</a
+    >
     <slot />
   </body>
 </html>

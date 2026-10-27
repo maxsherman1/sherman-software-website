@@ -1,10 +1,19 @@
 @import "tailwindcss";
 
 /*
- * Sherman Software design system — tokens.
- * Values follow the prose spec (ink #0D0F11, vermilion #D94826, steel #2C3238,
- * rule #E2DED4, canvas #F5F3EC). The frontmatter hex values in the source doc differ;
- * change them here, in one place, if those are the intended ones.
+ * Sherman Software — "Sherman Editorial Studio" design system.
+ *
+ * Registered palette (only these values may be used for colour):
+ *   #ffffff  white       surface / raised cards
+ *   #000000  ink         foreground, body text and headings
+ *   #1d1c16  espresso    accent — primary actions and emphasis (used sparingly)
+ *   #fbf9f2  paper       page ground
+ *   #b22c0b  terracotta  secondary text, marks and metadata
+ *   #747878  outline     borders, rules and dividers
+ *   #ff633e  ember       secondary actions and links (hover)
+ *
+ * Type: Newsreader (display) · Hanken Grotesk (body) · JetBrains Mono (labels)
+ * Posture: 0.125rem radius · 1px borders · alternating paper / white surfaces.
  */
 @theme {
   /* Drop Tailwind's default palette, radii and shadows: the system is flat and sharp */
@@ -12,161 +21,174 @@
   --radius-*: initial;
   --shadow-*: initial;
 
-  --color-ink: #0D0F11;
-  --color-vermilion: #D94826;
-  --color-steel: #2C3238;
-  --color-rule: #E2DED4;
-  --color-canvas: #F5F3EC;
-  --color-white: #FFFFFF;
+  --color-white: #ffffff;
+  --color-ink: #000000;
+  --color-espresso: #1d1c16;
+  --color-paper: #fbf9f2;
+  --color-terracotta: #b22c0b;
+  --color-outline: #747878;
+  --color-ember: #ff633e;
 
-  --font-serif: "Newsreader", serif;
-  --font-sans: "Space Grotesk", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-serif: "Newsreader", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Desktop starts at 1200px (12-col); tablet 768–1199 (8-col); mobile <768 (4-col) */
+  --radius-brand: 0.125rem;
+
+  /* Desktop starts at 1200px; tablet 768–1199; mobile <768 */
   --breakpoint-lg: 75rem;
 }
 
-:root {
-  --margin: 1.25rem;
-}
-@media (min-width: 48rem) {
-  :root { --margin: 2rem; }
-}
-@media (min-width: 75rem) {
-  :root { --margin: 3rem; }
-}
+:root { --margin: 1.5rem; }
+@media (min-width: 48rem) { :root { --margin: 2.5rem; } }
+@media (min-width: 75rem) { :root { --margin: 4rem; } }
 
 @layer base {
-  html { scroll-padding-top: 6rem; }
+  html {
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
   @media (prefers-reduced-motion: no-preference) {
     html { scroll-behavior: smooth; }
   }
 
   body {
-    background-color: var(--color-canvas);
+    background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    line-height: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Strictly sharp corners */
-  *, ::before, ::after { border-radius: 0; }
+  ::selection { background: var(--color-espresso); color: var(--color-paper); }
 
-  ::selection { background: var(--color-ink); color: var(--color-canvas); }
+  :focus-visible { outline: 2px solid var(--color-terracotta); outline-offset: 2px; }
 
-  :focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
-
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--color-canvas); }
-  ::-webkit-scrollbar-thumb { background: var(--color-rule); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-paper); }
+  ::-webkit-scrollbar-thumb { background: var(--color-outline); }
   ::-webkit-scrollbar-thumb:hover { background: var(--color-ink); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
-  /* Page frame: 4/8/12-col margins */
+  /* Page frame: 4 / 8 / 12-col margins */
   .frame {
-    max-width: 90rem;
+    max-width: 84rem;
     margin-inline: auto;
     padding-inline: var(--margin);
   }
 
   /* ---------- Typography scale ---------- */
-  .t-display, .t-h1, .t-h2, .t-h3 { font-family: var(--font-serif); }
+  .t-display, .t-h1, .t-h2, .t-h3 { font-family: var(--font-serif); font-weight: 400; }
+  .t-display { font-size: clamp(2.75rem, 7vw, 5.5rem); line-height: 0.98; letter-spacing: -0.02em; }
+  .t-h1 { font-size: clamp(2rem, 4.4vw, 3.25rem); line-height: 1.04; letter-spacing: -0.018em; }
+  .t-h2 { font-size: clamp(1.625rem, 2.7vw, 2.25rem); line-height: 1.12; letter-spacing: -0.012em; }
+  .t-h3 { font-size: 1.375rem; line-height: 1.32; letter-spacing: -0.006em; }
 
-  .t-display { font-size: 2.75rem; line-height: 3rem; font-weight: 400; letter-spacing: -0.02em; }
-  .t-h1 { font-size: 2rem; line-height: 2.25rem; font-weight: 400; letter-spacing: -0.01em; }
-  .t-h2 { font-size: 2rem; line-height: 2.35rem; font-weight: 500; letter-spacing: -0.015em; }
-  .t-h3 { font-size: 1.5rem; line-height: 1.85rem; font-weight: 500; letter-spacing: -0.01em; }
-  @media (min-width: 48rem) {
-    .t-display { font-size: 4.5rem; line-height: 4.75rem; letter-spacing: -0.03em; }
-    .t-h1 { font-size: 3rem; line-height: 3.25rem; letter-spacing: -0.02em; }
-  }
-
-  .t-body-lg { font-family: var(--font-sans); font-size: 1.125rem; line-height: 1.75rem; letter-spacing: -0.01em; }
-  .t-body { font-family: var(--font-sans); font-size: 0.9375rem; line-height: 1.5rem; }
-  .t-body-sm { font-family: var(--font-sans); font-size: 0.8125rem; line-height: 1.25rem; letter-spacing: 0.005em; }
+  .t-body-lg { font-family: var(--font-sans); font-size: 1.25rem; line-height: 1.6; }
+  .t-body { font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.65; }
+  .t-body-sm { font-family: var(--font-sans); font-size: 0.9375rem; line-height: 1.55; }
 
   .t-label {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    line-height: 1rem;
+    line-height: 1;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
   }
-  .t-code { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.25rem; }
+  .t-code { font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.4; }
 
-  /* ---------- Buttons (no transitions: states flip instantly) ---------- */
+  /* ---------- Buttons ---------- */
   .btn {
     display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.5rem;
     border: 1px solid var(--color-ink);
+    border-radius: var(--radius-brand);
     font-family: var(--font-sans);
     font-size: 0.9375rem;
-    line-height: 1.5rem;
+    line-height: 1.2;
     font-weight: 500;
+    letter-spacing: 0.005em;
+    text-decoration: none;
     cursor: pointer;
+    transition: background-color 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
   }
-  .btn-compact { padding: 0.5rem 1rem; }
-  .btn-primary { background: var(--color-ink); color: var(--color-canvas); }
-  .btn-primary:hover { background: var(--color-vermilion); border-color: var(--color-vermilion); color: var(--color-white); }
-  .btn-outline { background: transparent; color: var(--color-ink); }
-  .btn-outline:hover { box-shadow: 2px 2px 0 0 var(--color-ink); }
-  .btn-inverse { background: var(--color-canvas); border-color: var(--color-canvas); color: var(--color-ink); }
-  .btn-inverse:hover { background: var(--color-vermilion); border-color: var(--color-vermilion); color: var(--color-white); }
+  .btn-compact { padding: 0.6rem 1.1rem; }
+  .btn-block { width: 100%; }
+  .btn-primary { background: var(--color-espresso); color: var(--color-paper); border-color: var(--color-espresso); }
+  .btn-primary:hover { background: var(--color-terracotta); border-color: var(--color-terracotta); color: var(--color-white); }
+  .btn-outline { background: transparent; color: var(--color-ink); border-color: var(--color-outline); }
+  .btn-outline:hover { background: var(--color-espresso); border-color: var(--color-espresso); color: var(--color-paper); }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
-  /* ---------- Chips & datum badges ---------- */
+  /* text link */
+  .link {
+    color: var(--color-terracotta);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color 150ms ease-out;
+  }
+  .link:hover { color: var(--color-ember); }
+
+  /* ---------- Chip ---------- */
   .chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    border: 1px solid var(--color-rule);
-    padding: 0.25rem 0.5rem;
+    gap: 0.4rem;
+    border: 1px solid var(--color-outline);
+    border-radius: var(--radius-brand);
+    padding: 0.3rem 0.55rem;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    line-height: 1rem;
+    font-size: 0.6875rem;
+    line-height: 1;
     font-weight: 500;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-  }
-  .chip-signal::before {
-    content: "";
-    width: 4px;
-    height: 4px;
-    background: var(--color-vermilion);
+    color: var(--color-terracotta);
   }
 
   /* ---------- Form fields ---------- */
   .field {
     width: 100%;
-    background: var(--color-canvas);
-    border: 1px solid var(--color-rule);
-    padding: 0.75rem 1rem;
+    background: var(--color-paper);
+    border: 1px solid var(--color-outline);
+    border-radius: var(--radius-brand);
+    padding: 0.75rem 0.9rem;
     font-family: var(--font-sans);
-    font-size: 0.9375rem;
-    line-height: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.4;
     color: var(--color-ink);
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
   }
-  .field::placeholder { color: var(--color-steel); opacity: 0.6; }
-  .field:focus, .field:focus-visible { border-color: var(--color-ink); outline: none; }
+  .field::placeholder { color: var(--color-outline); }
+  .field:focus, .field:focus-visible {
+    border-color: var(--color-terracotta);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-terracotta) 18%, transparent);
+  }
+  .field[aria-invalid="true"] { border-color: var(--color-terracotta); }
+  .field-error { color: var(--color-terracotta); font-family: var(--font-sans); font-size: 0.8125rem; line-height: 1.4; }
 
-  /* ---------- Registration marks (+) at card corners ---------- */
-  .reg { position: relative; }
-  .reg::before, .reg::after {
-    content: "";
-    position: absolute;
-    width: 9px;
-    height: 9px;
-    background:
-      linear-gradient(var(--color-rule), var(--color-rule)) center / 1px 100% no-repeat,
-      linear-gradient(var(--color-rule), var(--color-rule)) center / 100% 1px no-repeat;
-    pointer-events: none;
-  }
-  .reg::before { top: -5px; left: -5px; }
-  .reg::after { bottom: -5px; right: -5px; }
+  /* ---------- FAQ disclosure ---------- */
+  .faq-item summary { list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item .faq-mark { transition: transform 220ms ease-out; }
+  .faq-item[open] .faq-mark { transform: rotate(45deg); }
 }

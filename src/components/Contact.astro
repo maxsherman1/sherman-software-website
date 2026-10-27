@@ -1,4 +1,5 @@
 ---
+import SectionHeader from './SectionHeader.astro';
 import { contact, projectTypes } from '../data/site';
 
 const rows = [
@@ -8,71 +9,150 @@ const rows = [
 ];
 ---
 
-<section id="contact" class="bg-ink">
-  <div class="frame grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 gap-y-10 py-10 md:py-16">
-    <!-- Direct contact info -->
-    <div class="col-span-4 md:col-span-8 lg:col-span-5 space-y-6">
-      <span class="t-label text-canvas/60 block">Section 06 — Contact</span>
-      <h2 class="t-h1 text-vermilion">Klaar om jouw project te starten?</h2>
-      <p class="t-body text-canvas/60">
-        Heb je een nieuwe website nodig, wil je een bestaand proces verbeteren of zoek je iemand die met je meedenkt over maatwerksoftware? Vertel kort wat je in gedachten hebt. Ik bekijk je aanvraag persoonlijk en laat je binnen één werkdag weten wat een logische volgende stap is. Je hoeft nog niet precies te weten wat je nodig hebt. We kunnen samen de mogelijkheden verkennen.
+<section id="contact" class="border-b border-outline/25">
+  <div class="frame py-10 md:py-16">
+    <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-10">
+      <!-- Intro + direct contact -->
+       
+      <div class="col-span-4 md:col-span-8 lg:col-span-5 space-y-6">
+        <SectionHeader
+        eyebrow="07 / Contact"
+        title="Klaar om jouw project te starten?"
+        noBorder
+      />
+      <p class="t-body text-ink/75">
+        Heb je een nieuwe website nodig, wil je een bestaand proces verbeteren of zoek je iemand die met je
+        meedenkt over maatwerksoftware? Vertel kort wat je in gedachten hebt. Ik bekijk je aanvraag persoonlijk en
+        laat je binnen één werkdag weten wat een logische volgende stap is.
       </p>
 
-      <!-- Recessed telemetry readout -->
-      <dl class="bg-ink border border-vermilion text-canvas p-4">
-        {rows.map((r) => (
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-4 py-3 border-b border-canvas/25 last:border-b-0">
-            <dt class="t-label text-canvas/60">{r.label}</dt>
-            <dd class="t-code">
-              {r.href ? <a href={r.href} class="hover:text-vermilion">{r.value}</a> : r.value}
-            </dd>
+        <dl class="border border-outline/30 rounded-brand bg-white divide-y divide-outline/20">
+          {
+            rows.map((row) => (
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 px-4 py-3">
+                <dt class="t-label text-outline">{row.label}</dt>
+                <dd class="t-code text-ink">
+                  {row.href ? <a href={row.href} class="link">{row.value}</a> : row.value}
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+
+      <!-- Form -->
+      <div class="col-span-4 md:col-span-8 lg:col-span-7">
+        <form id="contact-form" class="border border-outline/30 rounded-brand bg-white px-6 md:px-10 pt-6 md:pt-8 pb-0 space-y-6" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label for="naam" class="t-label text-ink block">Naam <span class="text-terracotta">*</span></label>
+              <input id="naam" name="naam" type="text" required autocomplete="name" placeholder="Jan de Vries" class="field" aria-describedby="naam-error" />
+              <p id="naam-error" class="field-error" hidden></p>
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="t-label text-ink block">E-mailadres <span class="text-terracotta">*</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="jan@bedrijf.nl" class="field" aria-describedby="email-error" />
+              <p id="email-error" class="field-error" hidden></p>
+            </div>
           </div>
-        ))}
-      </dl>
-    </div>
 
-    <!-- Form -->
-    <div class="col-span-4 md:col-span-8 lg:col-span-7">
-      <form id="contact-form" class="border border-rule bg-white p-6 md:p-10 space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="naam" class="t-label text-steel block mb-2">Naam *</label>
-            <input id="naam" name="naam" type="text" required placeholder="Jan de Vries" class="field" />
+          <div class="space-y-2">
+            <label for="type" class="t-label text-ink block">Type project</label>
+            <select id="type" name="type" class="field">
+              {projectTypes.map((type) => <option>{type}</option>)}
+            </select>
           </div>
-          <div>
-            <label for="email" class="t-label text-steel block mb-2">E-mailadres *</label>
-            <input id="email" name="email" type="email" required placeholder="jan@bedrijf.nl" class="field" />
+
+          <div class="space-y-2">
+            <label for="omschrijving" class="t-label text-ink block">Project omschrijving</label>
+            <textarea
+              id="omschrijving"
+              name="omschrijving"
+              rows="4"
+              placeholder="Vertel kort over je doelen, wensen en eventuele gewenste opleverdatum…"
+              class="field"></textarea>
           </div>
-        </div>
 
-        <div>
-          <label for="type" class="t-label text-steel block mb-2">Type project</label>
-          <select id="type" name="type" class="field">
-            {projectTypes.map((t) => <option>{t}</option>)}
-          </select>
-        </div>
+          <button type="submit" class="btn btn-primary btn-block">Verstuur aanvraag</button>
 
-        <div>
-          <label for="omschrijving" class="t-label text-steel block mb-2">Project omschrijving</label>
-          <textarea
-            id="omschrijving"
-            name="omschrijving"
-            rows="4"
-            placeholder="Vertel kort over je doelen, wensen en eventuele gewenste opleverdatum..."
-            class="field"
-          ></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary w-full justify-center">Verstuur aanvraag</button>
-      </form>
+          <p id="form-status" class="t-body-sm" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  // Placeholder behaviour carried over from the prototype: nothing is sent yet.
-  document.querySelector<HTMLFormElement>('#contact-form')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Bedankt voor je aanvraag! Er wordt snel contact met je opgenomen.');
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const submit = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
+  const messages: Record<string, string> = {
+    naam: 'Vul je naam in.',
+    email: 'Vul een geldig e-mailadres in, bijvoorbeeld jan@bedrijf.nl.',
+  };
+
+  const fields = ['naam', 'email'] as const;
+
+  const validateField = (name: string): boolean => {
+    const input = form?.elements.namedItem(name) as HTMLInputElement | null;
+    const error = document.getElementById(`${name}-error`);
+    if (!input || !error) return true;
+
+    let message = '';
+    if (!input.value.trim()) {
+      message = messages[name];
+    } else if (name === 'email' && !input.checkValidity()) {
+      message = messages[name];
+    }
+
+    error.textContent = message;
+    error.hidden = !message;
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    return !message;
+  };
+
+  fields.forEach((name) => {
+    const input = form?.elements.namedItem(name) as HTMLInputElement | null;
+    input?.addEventListener('blur', () => validateField(name));
+    input?.addEventListener('input', () => {
+      if (input.getAttribute('aria-invalid') === 'true') validateField(name);
+    });
+  });
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form || !status || !submit) return;
+
+    const results = fields.map(validateField);
+    const valid = results.every(Boolean);
+
+    if (!valid) {
+      const firstInvalid = fields.find((name) => !validateField(name));
+      if (firstInvalid) {
+        (form.elements.namedItem(firstInvalid) as HTMLInputElement | null)?.focus();
+      }
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Versturen…';
+    status.hidden = true;
+
+    window.setTimeout(() => {
+      status.hidden = false;
+      status.className = 't-body-sm text-ink border border-terracotta rounded-brand px-4 py-3';
+      status.textContent =
+        'Bedankt voor je aanvraag. Ik neem binnen één werkdag persoonlijk contact met je op.';
+      form.reset();
+      submit.disabled = false;
+      submit.textContent = 'Verstuur aanvraag';
+      fields.forEach((name) => {
+        const input = form.elements.namedItem(name) as HTMLInputElement | null;
+        input?.setAttribute('aria-invalid', 'false');
+        const error = document.getElementById(`${name}-error`);
+        if (error) error.hidden = true;
+      });
+    }, 600);
   });
 </script>

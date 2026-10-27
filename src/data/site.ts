@@ -5,19 +5,6 @@ export const nav = [
   { href: '#tarieven', label: 'Tarieven' },
 ];
 
-export const valueProps = [
-  '100% Maatwerk (Geen Templates)',
-  'Razendsnelle Laadtijden',
-  'Eerlijke Vaste Prijzen',
-  'Volledig Eigenaarschap',
-];
-
-export const caseSpecs = [
-  { label: 'Tech Stack:', value: 'Astro / React / Tailwind' },
-  { label: 'Performance Rating:', value: '99/100 Lighthouse' },
-  { label: 'Inzetbaarheid:', value: 'Financiële Analyse & Dashboards' },
-];
-
 export const services = [
   {
     id: '01',
@@ -25,7 +12,6 @@ export const services = [
     description:
       'Representatieve, snelle websites die direct de kwaliteit van je bedrijf weerspiegelen. Geoptimaliseerd voor Google en perfect leesbaar op mobiel.',
     bullets: ['Een ontwerp dat past bij jouw bedrijf', 'SEO-vriendelijke structuur', 'Eenvoudig zelf te beheren'],
-    tinted: false,
   },
   {
     id: '02',
@@ -33,7 +19,6 @@ export const services = [
     description:
       'Klantportalen, interne dashboards of maatwerk software die jouw specifieke bedrijfsproces automatiseert en vereenvoudigt.',
     bullets: ['Klantportalen & Dashboards', 'Koppelingen met andere systemen, met aandacht voor beveiliging', 'Een gegevensstructuur die past bij jouw toepassing'],
-    tinted: true,
   },
   {
     id: '03',
@@ -41,7 +26,6 @@ export const services = [
     description:
       'Proactief beheer, beveiligingsupdates en geleidelijke optimalisatie van je applicaties, zodat je nooit stilstaat.',
     bullets: ['Monitoring & Snelle Updates', 'Back-ups & Beveiliging', 'Flexibele ondersteuning'],
-    tinted: false,
   },
 ];
 
@@ -71,22 +55,22 @@ export const aboutCards = [
 export const steps = [
   {
     id: '01',
-    title: '1. Verkenning',
+    title: 'Verkenning',
     text: 'Vrijblijvend gesprek over jouw bedrijfsdoelen, wensen en de vereiste functionaliteiten.',
   },
   {
     id: '02',
-    title: '2. Ontwerp',
+    title: 'Ontwerp',
     text: 'Bespoke visueel voorstel. We schaven het ontwerp bij tot het perfect aansluit bij je merk.',
   },
   {
     id: '03',
-    title: '3. Ontwikkeling',
+    title: 'Ontwikkeling',
     text: 'Nauwkeurige code-implementatie en continue afstemming via een afgeschermde testomgeving.',
   },
   {
     id: '04',
-    title: '4. Livegang',
+    title: 'Livegang',
     text: 'Grondige testen, domeinkoppeling, SEO-oplevering en overdracht inclusief korte uitleg.',
   },
 ];
@@ -101,9 +85,9 @@ export const pricing = [
   },
   {
     label: 'Webapplicatie / Portal',
-    price: 'Prijs op basis van functionaliteit en scope.',
+    price: 'Op aanvraag',
     unit: undefined,
-    text: 'Maatwerk dashboards, klantportalen en gekoppelde applicaties voor efficiënte bedrijfsvoering.',
+    text: 'Maatwerk dashboards, klantportalen en gekoppelde applicaties. De prijs bepalen we samen op basis van functionaliteit en scope.',
     highlighted: true,
   },
   {

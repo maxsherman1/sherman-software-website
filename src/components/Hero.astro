@@ -1,26 +1,56 @@
-<section class="border-b border-rule">
-  <div class="frame grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 gap-y-10 items-end py-10 md:py-16">
-    <!-- Headline -->
-    <div class="col-span-4 md:col-span-8 lg:col-span-8 space-y-6">
-      <h1 class="t-display text-ink">
-        Een professionele webiste, <em class="italic text-[var(--color-vermilion)]">zonder</em> het gedoe.
-      </h1>
-    </div>
+---
+const facts = [
+  {
+    term: 'Direct contact',
+    detail: 'Je spreekt direct met de ontwikkelaar die je website bouwt. Geen tussenpersonen of accountmanagers.',
+  },
+  {
+    term: 'Vaste prijsafspraken',
+    detail: 'Duidelijke scope, planning en prijs voordat we beginnen. Geen verrassingen achteraf.',
+  },
+  {
+    term: 'Reactie binnen 1 werkdag',
+    detail: 'Je aanvraag wordt persoonlijk bekeken en je hoort snel wat een logische volgende stap is.',
+  },
+];
+---
 
-    <!-- Supporting copy & CTAs -->
-    <div class="col-span-4 md:col-span-8 lg:col-span-4 md:max-w-xl lg:max-w-none space-y-6">
-      <p class="t-body text-steel border-l border-ink pl-4">
-        Ik help ondernemers aan een website die vertrouwen wekt, hun diensten helder presenteert en nieuwe klanten helpt bereiken. Van eerste idee tot livegang heb je rechtstreeks contact met de ontwikkelaar, met duidelijke afspraken over de planning, kosten en het resultaat.
-      </p>
-
-      <div class="flex flex-col gap-2">
-        <a href="#contact" class="btn btn-primary"><span>Bespreek je project</span><span aria-hidden="true">→</span></a>
-        <a href="#werk" class="btn btn-outline"><span>Bekijk mijn werk</span><span aria-hidden="true">↓</span></a>
+<section id="top" class="border-b border-outline/25">
+  <div class="frame pt-8 md:pt-12">
+    <!-- Headline + brief -->
+    <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-10 items-end pt-4 md:pt-6">
+      <div class="col-span-4 md:col-span-8 lg:col-span-8">
+        <h1 class="t-display text-ink text-balance">
+          Een professionele website, <em class="italic text-terracotta">zonder</em> het gedoe.
+        </h1>
       </div>
 
-      <div class="pt-4 border-t border-rule flex items-center gap-3 t-label text-steel">
-        <span>Direct contact met de ontwikkelaar • Geen tussenpersonen</span>
+      <div class="col-span-4 md:col-span-8 lg:col-span-4 space-y-6">
+        <p class="t-body text-ink/75 max-w-[46ch]">
+          Ik help ondernemers aan een website die vertrouwen wekt, hun diensten helder presenteert en nieuwe
+          klanten helpt bereiken. Van eerste idee tot livegang heb je rechtstreeks contact met de ontwikkelaar,
+          met duidelijke afspraken over planning, kosten en resultaat.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="#contact" class="btn btn-primary">Bespreek je project <span aria-hidden="true">→</span></a>
+          <a href="#werk" class="btn btn-outline">Bekijk mijn werk</a>
+        </div>
       </div>
     </div>
+
+    <!-- Honest proof baseline -->
+    <dl
+      class="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 border-t border-outline/30 sm:divide-x sm:divide-outline/30"
+    >
+      {
+        facts.map((fact) => (
+          <div class="flex flex-col gap-2 py-5 sm:px-6 sm:first:pl-0 sm:last:pr-0 border-b border-outline/20 sm:border-b-0">
+            <dt class="t-label text-terracotta">{fact.term}</dt>
+            <dd class="t-body-sm text-ink/70 max-w-[38ch]">{fact.detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
   </div>
 </section>

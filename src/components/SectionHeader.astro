@@ -4,11 +4,12 @@ interface Props {
   title: string;
   aside?: string;
   class?: string;
+  noBorder?: boolean;
 }
-const { eyebrow, title, aside, class: className = 'mb-10' } = Astro.props;
+const { eyebrow, title, aside, class: className = 'mb-10', noBorder = false } = Astro.props;
 ---
 
-<div class:list={['flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-ink', className]}>
+<div class:list={['flex flex-col md:flex-row md:items-end justify-between gap-4', noBorder ? 'mb-10' : 'pb-4 border-b border-ink mb-10', className]}>
   <div>
     <span class="t-label text-steel block mb-2">{eyebrow}</span>
     <h2 class="t-h1 text-ink">{title}</h2>

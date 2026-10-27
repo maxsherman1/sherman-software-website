@@ -1,56 +1,55 @@
 ---
 import SectionHeader from './SectionHeader.astro';
+
+const focus = [
+  'Een online aanvraagproces voor klanten',
+  'Aparte omgevingen voor klanten en beheerders',
+  'Documentuploads en gegevensopslag',
+  'Een offerte- en betalingsproces',
+  'Een technische basis voor verdere uitbreiding',
+];
 ---
 
-<section id="werk" class="border-b border-rule">
+<section id="werk" class="border-b border-outline/25">
   <div class="frame py-10 md:py-16">
     <SectionHeader
-      eyebrow="Section 01"
-      title="Uitgelicht portfolio project"
-      aside="Case study: custom webapplicatie dashboard voor de financiële sector."
+      eyebrow="01 / Werk"
+      title="Uitgelicht project"
+      aside="Een live webapplicatie voor het aanvraag- en beoordelingsproces van Investment Health Checks."
+      noBorder
     />
 
-    <div class="reg border border-rule bg-white grid grid-cols-1 lg:grid-cols-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 border border-outline/30 rounded-brand overflow-hidden bg-white">
       <!-- Info -->
-      <div class="lg:col-span-5 p-6 md:p-10 flex flex-col gap-4 border-b lg:border-b-0 lg:border-r border-rule">
-        <div><span class="chip text-steel">Live platform</span></div>
+      <div class="lg:col-span-5 p-6 md:p-10 flex flex-col gap-5 border-b lg:border-b-0 lg:border-r border-outline/30">
+        <div><span class="chip">Webapplicatie op maat</span></div>
 
         <h3 class="t-h2 text-ink">Investment Health Checks</h3>
 
-        <p class="t-body text-steel">
-          Voor Investment Health Checks ontwikkelde ik een webapplicatie die klanten en beheerders ondersteunt tijdens het aanvraag- en beoordelingsproces.
+        <p class="t-body text-ink/75">
+          Voor Investment Health Checks ontwikkelde ik een webapplicatie die klanten en beheerders ondersteunt
+          tijdens het aanvraag- en beoordelingsproces.
         </p>
-        <p class="t-body text-steel">
-          Klanten kunnen online hun gegevens aanleveren en documenten uploaden. Beheerders kunnen aanvragen beoordelen, aanvullende informatie opvragen en het proces verder afhandelen vanuit een afgeschermde omgeving.
+        <p class="t-body text-ink/75">
+          Klanten leveren online hun gegevens aan en uploaden documenten. Beheerders beoordelen aanvragen,
+          vragen aanvullende informatie op en handelen het proces verder af vanuit een afgeschermde omgeving.
         </p>
 
-        <ul class="space-y-2 t-body text-steel">
-          <li class="flex items-baseline gap-2">
-            <span class="text-vermilion">▸</span>
-            <span>Een online aanvraagproces voor klanten</span>
-          </li>
-          <li class="flex items-baseline gap-2">
-            <span class="text-vermilion">▸</span>
-            <span>Aparte omgevingen voor klanten en beheerders</span>
-          </li>
-          <li class="flex items-baseline gap-2">
-            <span class="text-vermilion">▸</span>
-            <span>Documentuploads en gegevensopslag</span>
-          </li>
-          <li class="flex items-baseline gap-2">
-            <span class="text-vermilion">▸</span>
-            <span>Een offerte- en betalingsproces</span>
-          </li>
-          <li class="flex items-baseline gap-2">
-            <span class="text-vermilion">▸</span>
-            <span>Een technische basis voor verdere uitbreiding</span>
-          </li>
+        <ul class="space-y-2">
+          {
+            focus.map((item) => (
+              <li class="t-body-sm text-ink/75 flex items-baseline gap-2">
+                <span class="text-terracotta" aria-hidden="true">—</span>
+                <span>{item}</span>
+              </li>
+            ))
+          }
         </ul>
 
-        <dl class="mt-auto border-t border-rule">
-          <div class="flex items-baseline justify-between gap-4 py-2 border-b border-rule t-code">
-            <dt class="text-steel shrink-0">Gebruikte technologie</dt>
-            <dd class="text-ink text-right w-[260px]">Next.js / React / TypeScript / PostgreSQL / Vercel</dd>
+        <dl class="mt-auto pt-5 border-t border-outline/25">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-4 t-code">
+            <dt class="text-outline shrink-0">Gebruikte technologie</dt>
+            <dd class="text-ink">Next.js / React / TypeScript / PostgreSQL / Vercel</dd>
           </div>
         </dl>
 
@@ -58,17 +57,22 @@ import SectionHeader from './SectionHeader.astro';
           href="https://investmenthealthchecks.com"
           target="_blank"
           rel="noopener"
-          class="btn btn-primary w-full justify-center"
+          class="btn btn-primary btn-block"
         >
           Bekijk live platform <span aria-hidden="true">→</span>
         </a>
       </div>
 
-      <!-- Live iframe preview (responsive scaled) -->
-      <div class="lg:col-span-7 p-4 md:p-6 flex">
-        <div id="preview-wrapper" class="w-full border border-rule overflow-hidden bg-[#ececec] rounded-lg shadow-lg relative lg:h-full">
-          <!-- Mac-style browser chrome -->
-          <div id="preview-chrome" class="flex items-center gap-3 px-3 py-2 bg-[#f5f5f5] border-b border-[#d1d1d1] select-none relative z-10">
+      <!-- Live scaled preview -->
+      <div class="lg:col-span-7 p-4 md:p-6 flex bg-paper">
+        <div
+          id="preview-wrapper"
+          class="w-full border border-outline/40 rounded-brand overflow-hidden bg-white relative lg:h-full"
+        >
+          <div
+            id="preview-chrome"
+            class="flex items-center gap-3 px-3 py-2 bg-paper border-b border-outline/30 select-none relative z-10"
+          >
             <div class="flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-[#ff5f57] ring-1 ring-[#e0443e]/30"></span>
               <span class="w-3 h-3 rounded-full bg-[#febc2e] ring-1 ring-[#d4a017]/30"></span>
@@ -88,46 +92,45 @@ import SectionHeader from './SectionHeader.astro';
               style="border:0; display:block;"
               loading="lazy"
               title="Investment Health Checks live website"
-              sandbox="allow-scripts allow-same-origin allow-forms"
-            ></iframe>
+              sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
           </div>
         </div>
-        <script is:inline>
-          (function () {
-            const wrapper = document.getElementById('preview-wrapper');
-            const scaler = document.getElementById('preview-scaler');
-            const iframe = document.getElementById('preview-iframe');
-            const chrome = document.getElementById('preview-chrome');
-            function resize() {
-              if (!wrapper || !scaler || !iframe || !chrome) return;
-              var vw = window.innerWidth;
-              if (vw > 1440) vw = 1440; // cap width on large screens to increase scale
-              var scale = wrapper.clientWidth / vw;
-              var chromeH = chrome.offsetHeight || 40;
-              var isLarge = vw >= 1024;
-              var targetH;
-              if (isLarge) {
-                wrapper.style.height = ''; // let lg:h-full control height
-                targetH = wrapper.clientHeight - chromeH;
-                if (targetH < 300) targetH = 300;
-              } else {
-                targetH = 400;
-                wrapper.style.height = (chromeH + targetH) + 'px';
-              }
-              var vh = Math.round(targetH / scale);
-              iframe.width = vw;
-              iframe.height = vh;
-              scaler.style.width = vw + 'px';
-              scaler.style.height = vh + 'px';
-              scaler.style.transform = 'scale(' + scale + ')';
-              scaler.style.top = chromeH + 'px';
-            }
-            resize();
-            window.addEventListener('resize', resize);
-          })();
-        </script>
       </div>
     </div>
   </div>
 </section>
 
+<script is:inline>
+  (function () {
+    var wrapper = document.getElementById('preview-wrapper');
+    var scaler = document.getElementById('preview-scaler');
+    var iframe = document.getElementById('preview-iframe');
+    var chrome = document.getElementById('preview-chrome');
+    function resize() {
+      if (!wrapper || !scaler || !iframe || !chrome) return;
+      var vw = window.innerWidth;
+      if (vw > 1440) vw = 1440;
+      var scale = wrapper.clientWidth / vw;
+      var chromeH = chrome.offsetHeight || 40;
+      var isLarge = window.innerWidth >= 1024;
+      var targetH;
+      if (isLarge) {
+        wrapper.style.height = '';
+        targetH = wrapper.clientHeight - chromeH;
+        if (targetH < 300) targetH = 300;
+      } else {
+        targetH = 400;
+        wrapper.style.height = chromeH + targetH + 'px';
+      }
+      var vh = Math.round(targetH / scale);
+      iframe.width = vw;
+      iframe.height = vh;
+      scaler.style.width = vw + 'px';
+      scaler.style.height = vh + 'px';
+      scaler.style.transform = 'scale(' + scale + ')';
+      scaler.style.top = chromeH + 'px';
+    }
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+</script>

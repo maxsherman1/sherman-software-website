@@ -1,6 +1,50 @@
+---
+import { nav, contact } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
 <footer class="border-t border-ink">
-  <div class="frame flex flex-col sm:flex-row justify-between gap-2 py-6 t-label text-steel">
-    <div>© {new Date().getFullYear()} Sherman Software. Alle rechten voorbehouden.</div>
-    <div>Onafhankelijke web development studio • Nederland</div>
+  <div class="frame py-10 md:py-12 grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-8">
+    <div class="col-span-4 md:col-span-8 lg:col-span-5 space-y-3">
+      <a href="#top" class="font-serif text-xl text-ink hover:text-terracotta transition-colors block"
+        >Sherman Software</a
+      >
+      <p class="t-body-sm text-ink/70 max-w-[42ch]">
+        Onafhankelijke web development studio. Websites, webapplicaties en onderhoud, met direct contact en
+        duidelijke afspraken.
+      </p>
+    </div>
+
+    <nav class="col-span-2 md:col-span-4 lg:col-span-4" aria-label="Voettekst">
+      <span class="t-label text-outline block mb-4">Navigatie</span>
+      <ul class="space-y-2">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="t-body-sm text-ink/75 hover:text-terracotta transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="col-span-4 md:col-span-4 lg:col-span-3 space-y-4">
+      <span class="t-label text-outline block">Contact</span>
+      <ul class="space-y-2 t-body-sm">
+        <li><a href={`mailto:${contact.email}`} class="link">{contact.email}</a></li>
+        <li class="text-ink/75">{contact.location}</li>
+        <li class="text-ink/75">Reactie {contact.response.toLowerCase()}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-outline/25">
+    <div class="frame flex flex-col sm:flex-row justify-between gap-2 py-4 t-label text-outline">
+      <span>© {year} Sherman Software</span>
+      <span>Alle rechten voorbehouden</span>
+    </div>
   </div>
 </footer>

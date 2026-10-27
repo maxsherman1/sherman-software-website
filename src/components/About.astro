@@ -1,34 +1,38 @@
 ---
+import SectionHeader from './SectionHeader.astro';
 import { aboutCards } from '../data/site';
 ---
 
-<section id="over" class="border-b border-rule">
-  <div class="frame grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 gap-y-10 py-10 md:py-16">
-    <!-- Editorial quote -->
-    <div class="col-span-4 md:col-span-8 lg:col-span-5 space-y-6">
-      <span class="t-label text-steel block">Section 03 — Over studio</span>
-      <h2 class="t-h1 text-ink">Persoonlijk, duidelijk &amp; betrouwbaar</h2>
-      <blockquote class="space-y-4">
-        <p class="t-h3 italic font-normal text-ink">
-          "Als zelfstandig ontwikkelaar combineer ik de technische precisie van een bureau met de snelheid en het persoonlijke contact van een directe partner."
-        </p>
-      </blockquote>
-    </div>
+<section id="over" class="border-b border-outline/25">
+  <div class="frame py-10 md:py-16">
+    <SectionHeader
+      eyebrow="03 / Over de studio"
+      title="Persoonlijk, duidelijk & betrouwbaar"
+      noBorder
+    />
+    <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-10">
+      <div class="col-span-4 md:col-span-8 lg:col-span-5 space-y-4">
+        <figure class="border-l-2 border-terracotta pl-6 space-y-4 mt-10">
+          <blockquote class="t-h2 italic font-normal text-ink text-balance">
+            “Als zelfstandig ontwikkelaar combineer ik de technische precisie van een bureau met de snelheid en het
+            persoonlijke contact van een directe partner.”
+          </blockquote>
+          <figcaption class="t-label text-outline">— Sherman Software</figcaption>
+        </figure>
+      </div>
 
-    <!-- 4-point grid -->
-    <div class="col-span-4 md:col-span-8 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 self-start">
-      {aboutCards.map((c) => (
-        <div class="group bg-white p-6 flex flex-col border border-rule transition-all duration-300 hover:-translate-y-1 hover:z-10 hover:bg-canvas relative">
-          <h4 class="t-h3 text-ink mb-2 transition-colors group-hover:text-vermilion">{c.title}</h4>
-          <p class="t-body text-steel">{c.text}</p>
-        </div>
-      ))}
+      <div class="col-span-4 md:col-span-8 lg:col-span-7 space-y-10">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8 border-t border-outline/25 pt-8">
+          {
+            aboutCards.map((card) => (
+              <div class="space-y-2">
+                <dt class="t-h3 text-ink">{card.title}</dt>
+                <dd class="t-body-sm text-ink/70">{card.text}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  #over .group:hover {
-    box-shadow: 0 20px 40px -10px rgba(13, 15, 17, 0.18);
-  }
-</style>

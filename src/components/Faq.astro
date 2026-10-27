@@ -1,18 +1,33 @@
 ---
+import SectionHeader from './SectionHeader.astro';
 import { faq } from '../data/site';
 ---
 
-<section class="border-b border-rule">
-  <div class="frame grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 gap-y-6 py-10 md:py-16">
-    <h2 class="t-h1 text-ink col-span-4 md:col-span-8 lg:col-span-12">Veelgestelde vragen</h2>
+<section class="border-b border-outline/25">
+  <div class="frame py-10 md:py-16">
+    <SectionHeader
+      eyebrow="06 / Vragen"
+      title="Veelgestelde vragen"
+      noBorder
+    />
 
-    <div class="col-span-4 md:col-span-8 lg:col-start-3 lg:col-span-8 border border-rule bg-white divide-y divide-rule">
-      {faq.map((item) => (
-        <div class="p-6">
-          <h3 class="t-h3 text-ink mb-2">{item.q}</h3>
-          <p class="t-body text-steel">{item.a}</p>
-        </div>
-      ))}
+    <div class="divide-y divide-outline/25 border-t border-outline/25">
+      {
+        faq.map((item) => (
+          <details class="faq-item group py-5">
+            <summary class="flex items-start justify-between gap-6 cursor-pointer">
+              <h3 class="t-h3 text-ink group-hover:text-terracotta transition-colors">{item.q}</h3>
+              <span
+                class="faq-mark t-h3 text-terracotta shrink-0 leading-none"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </summary>
+            <p class="t-body text-ink/75 pt-4 max-w-[64ch]">{item.a}</p>
+          </details>
+        ))
+      }
     </div>
   </div>
 </section>

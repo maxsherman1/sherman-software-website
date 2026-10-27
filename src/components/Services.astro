@@ -3,33 +3,39 @@ import SectionHeader from './SectionHeader.astro';
 import { services } from '../data/site';
 ---
 
-<section id="diensten" class="border-b border-rule">
+<section id="diensten" class="border-b border-outline/25">
   <div class="frame py-10 md:py-16">
     <SectionHeader
-      eyebrow="Section 02"
+      eyebrow="02 / Diensten"
       title="Diensten op maat"
       aside="Geen standaard sjablonen. Elk project wordt vanaf de grond opgebouwd."
+      noBorder
     />
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 self-start">
-      {services.map((s) => (
-        <div class="group bg-white p-6 md:p-10 flex flex-col border border-rule transition-all duration-300 hover:-translate-y-1 hover:z-10 hover:bg-canvas relative">
-          <span class="t-label text-steel/50 mb-4">Service {s.id}</span>
-          <h3 class="t-h3 text-ink mb-4 transition-colors group-hover:text-vermilion">{s.title}</h3>
-          <p class="t-body text-steel mb-6">{s.description}</p>
-          <ul class="mt-auto t-code text-steel border-t border-rule pt-4 space-y-2">
-            {s.bullets.map((b) => (
-              <li class="flex items-baseline gap-2"><span aria-hidden="true">→</span> {b}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div class="divide-y divide-outline/25 border-t border-outline/25">
+      {
+        services.map((service) => (
+          <article class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-4 py-8 md:py-10">
+            <div class="col-span-4 md:col-span-8 lg:col-span-1">
+              <span class="t-code text-terracotta">{service.id}</span>
+            </div>
+
+            <h3 class="col-span-4 md:col-span-8 lg:col-span-5 t-h2 text-ink max-w-[16ch]">{service.title}</h3>
+
+            <div class="col-span-4 md:col-span-8 lg:col-span-6 space-y-4">
+              <p class="t-body text-ink/75 max-w-[54ch]">{service.description}</p>
+              <ul class="flex flex-wrap gap-x-6 gap-y-2">
+                {service.bullets.map((bullet) => (
+                  <li class="t-body-sm text-ink/70 flex items-baseline gap-2">
+                    <span class="text-terracotta" aria-hidden="true">—</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </div>
 </section>
-
-<style>
-  #diensten .group:hover {
-    box-shadow: 0 20px 40px -10px rgba(13, 15, 17, 0.18);
-  }
-</style>
