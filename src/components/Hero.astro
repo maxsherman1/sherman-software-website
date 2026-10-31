@@ -1,4 +1,15 @@
 ---
+/**
+ * Hero — "Stacked name, two inks" blueprint (name-as-monument direction)
+ * Motion: masked-headline (each line rises from its baseline, ~900ms ease-out,
+ *   line 2 +110ms; sentence + CTA fade up after; reduced-motion → instant)
+ *
+ * Per blueprint: whole-viewport flat field, name flush-left from 40px margin
+ *   at clamp(110px, 15vw, 230px), tracking -0.04em, line-height 0.82,
+ *   "SHERMAN" in terracotta (#b22c0b), "SOFTWARE" in espresso (#1d1c16).
+ *   Top: monogram left, nav links + CTA right. Bottom-right: sentence (18px, 30ch max) + action link.
+ *   Bottom-left stays empty. Trust facts bottom-left. Next section at fold.
+ */
 const facts = [
   {
     term: 'Direct contact',
@@ -13,44 +24,203 @@ const facts = [
     detail: 'Je aanvraag wordt persoonlijk bekeken en je hoort snel wat een logische volgende stap is.',
   },
 ];
+
+const navLinks = [
+  { label: 'Werk', href: '#werk' },
+  { label: 'Diensten', href: '#diensten' },
+  { label: 'Contact', href: '#contact' },
+];
 ---
 
-<section id="top" class="border-b border-outline/25">
-  <div class="frame pt-8 md:pt-12">
-    <!-- Headline + brief -->
-    <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-6 gap-y-10 items-end pt-4 md:pt-6">
-      <div class="col-span-4 md:col-span-8 lg:col-span-8">
-        <h1 class="t-display text-ink text-balance">
-          Een professionele website, <em class="italic text-terracotta">zonder</em> het gedoe.
-        </h1>
-      </div>
+<section
+  id="top"
+  class="hero relative flex min-h-[100dvh] items-end bg-paper text-ink"
+>
+  <!-- Monument name: two lines, two inks. Flush-left from 40px margin. -->
+  <!-- Starts 14% down, fills top 58% of viewport. -->
+  <div class="hero-monument absolute left-[40px] top-[14%] z-10">
+    <h1 class="hero-name font-serif font-black leading-[0.82] -tracking-[0.04em]">
+      <span class="hero-line block text-terracotta">SHERMAN</span>
+      <span class="hero-line block text-espresso">SOFTWARE</span>
+    </h1>
+  </div>
 
-      <div class="col-span-4 md:col-span-8 lg:col-span-4 space-y-6">
-        <p class="t-body text-ink/75 max-w-[46ch]">
-          Ik help ondernemers aan een website die vertrouwen wekt, hun diensten helder presenteert en nieuwe
-          klanten helpt bereiken. Van eerste idee tot livegang heb je rechtstreeks contact met de ontwikkelaar,
-          met duidelijke afspraken over planning, kosten en resultaat.
-        </p>
-
-        <div class="flex flex-wrap items-center gap-3">
-          <a href="#contact" class="btn btn-primary">Bespreek je project <span aria-hidden="true">→</span></a>
-          <a href="#werk" class="btn btn-outline">Bekijk mijn werk</a>
-        </div>
-      </div>
+  <!-- Top edge: monogram left, nav links + action right (24px in) -->
+  <div class="absolute left-[24px] top-[24px] right-[24px] z-20 flex items-center justify-between">
+    <span class="font-mono text-[10px] tracking-[0.2em] text-terracotta uppercase" aria-label="Sherman Software">
+      SS
+    </span>
+    <div class="flex items-center gap-6">
+      <nav aria-label="Snelmenu">
+        <ul class="flex items-center gap-6">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hero-navlink">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <a href="#contact" class="hero-top-cta text-terracotta underline underline-offset-3 decoration-[1px] uppercase no-underline-hover">
+        Bespreek
+      </a>
     </div>
+  </div>
 
-    <!-- Honest proof baseline -->
-    <dl
-      class="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 border-t border-outline/30 sm:divide-x sm:divide-outline/30"
-    >
-      {
-        facts.map((fact) => (
-          <div class="flex flex-col gap-2 py-5 sm:px-6 sm:first:pl-0 sm:last:pr-0 border-b border-outline/20 sm:border-b-0">
-            <dt class="t-label text-terracotta">{fact.term}</dt>
-            <dd class="t-body-sm text-ink/70 max-w-[38ch]">{fact.detail}</dd>
-          </div>
-        ))
-      }
+  <!-- Bottom-right: supporting sentence + primary CTA -->
+  <div class="hero-outro absolute bottom-[40px] right-[40px] z-20 max-w-[30ch] text-right">
+    <p class="hero-sentence text-[18px] leading-[1.5] text-ink/65">
+      Websites en webapps die vertrouwen wekken en klanten helpen bereiken.
+      <br />
+      <a href="#contact" class="hero-action mt-4 inline-flex items-center gap-1 text-espresso underline underline-offset-3 decoration-[1px]">
+        Bespreek je project <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+
+  <!-- Bottom-left: trust facts, just above fold -->
+  <div class="absolute bottom-[40px] left-[40px] z-20">
+    <dl class="flex flex-col gap-3">
+      {facts.map((fact) => (
+        <div>
+          <dt class="t-label text-terracotta">{fact.term}</dt>
+          <dd class="t-body-sm text-ink/70 max-w-[32ch]">{fact.detail}</dd>
+        </div>
+      ))}
     </dl>
   </div>
+
+  <style>
+    /* --- Font size: clamp(110px, 15vw, 230px) per blueprint --- */
+    .hero-name {
+      font-size: clamp(110px, 15vw, 230px);
+    }
+
+    /* --- Top nav link --- */
+    .hero-navlink {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: var(--color-ink);
+      position: relative;
+    }
+    .hero-navlink::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      background-color: var(--color-terracotta);
+      transition: width 180ms ease-out;
+    }
+    .hero-navlink:hover::after { width: 100%; }
+    .hero-navlink:hover { color: var(--color-espresso); }
+
+    /* --- Top CTA link: no underline on hover --- */
+    .no-underline-hover:hover {
+      text-decoration: none;
+    }
+
+    /* --- CTA press effect --- */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-action {
+        transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .hero-action:active { transform: scale(0.97); }
+    }
+
+    /* --- Masked headline animation (masked-headline motion) --- */
+    /* Initial hidden state — lines below baseline, outro faded */
+    .hero-line {
+      opacity: 0;
+      transform: translateY(120%);
+    }
+    .hero-sentence,
+    .hero-action {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      /* Lines rise from baseline — 920ms strong ease-out, line 2 +110ms */
+      .hero-line {
+        transition: transform 920ms cubic-bezier(0.23, 0.96, 0.32, 1),
+          opacity 920ms cubic-bezier(0.23, 0.96, 0.32, 1);
+      }
+      .hero-monument .hero-line:first-child { transition-delay: 0ms; }
+      .hero-monument .hero-line:last-child { transition-delay: 110ms; }
+      /* Loaded state → lines visible */
+      .hero-monument.loaded .hero-line {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Outro fades up together 1030ms after start (lines done) */
+      .hero-outro .hero-sentence,
+      .hero-outro .hero-action {
+        transition: opacity 600ms 1030ms cubic-bezier(0.23, 0.96, 0.32, 1),
+          transform 600ms 1030ms cubic-bezier(0.23, 0.96, 0.32, 1);
+      }
+      .hero-outro.loaded .hero-sentence,
+      .hero-outro.loaded .hero-action {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* reduced-motion: everything already visible (no transitions) */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-line,
+      .hero-sentence,
+      .hero-action {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* --- Mobile per blueprint: 100svh, name at 21vw, 16px margin, 18% down --- */
+    @media (max-width: 48rem) {
+      .hero {
+        min-height: 100svh;
+      }
+      .hero-monument {
+        left: 16px;
+        top: 18%;
+      }
+      .hero-name {
+        font-size: clamp(80px, 21vw, 140px);
+        margin-left: 0;
+      }
+      /* Supporting sentence → bottom-left at 16px, action beneath */
+      .hero-outro {
+        right: auto;
+        left: 40px;
+        bottom: 24px;
+        max-width: calc(100vw - 80px);
+        text-align: left;
+      }
+      .hero-action {
+        display: inline-block;
+        margin-top: 10px;
+      }
+    }
+  </style>
+
+  <script>
+    // Trigger masked-headline animation after first paint.
+    (function () {
+      const hero = document.querySelector('.hero');
+      const monument = hero?.querySelector('.hero-monument');
+      const outro = hero?.querySelector('.hero-outro');
+      if (!monument || !outro) return;
+      // First frame painted, then reveal lines; outro follows naturally via CSS transition-delay
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          monument.classList.add('loaded');
+          outro.classList.add('loaded');
+        });
+      });
+    })();
+  </script>
 </section>
